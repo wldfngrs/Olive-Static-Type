@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
+#include <vector>
+
+#include "../include/scanner.h"
 
 class Compiler {
-	std::string mSrc;
+	std::vector<Token> mTokens;
 
 public:
 	Compiler();

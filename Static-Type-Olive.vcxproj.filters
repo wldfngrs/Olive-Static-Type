@@ -18,12 +18,24 @@
     <ClInclude Include="include\compiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\scanner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\compiler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\token.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

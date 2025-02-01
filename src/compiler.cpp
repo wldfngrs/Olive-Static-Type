@@ -1,17 +1,24 @@
-#include "../include/compiler.h"
-
 #include <fstream>
 #include <iostream>
+#include <sstream>
+
+#include "../include/compiler.h"
+#include "../include/scanner.h"
 
 Compiler::Compiler() {}
 
 void Compiler::compile(const char* path) {
-	std::ifstream file(path);
-	std::string line;
-	while (std::getline(file, line)) {
-		mSrc.append(line);
-		mSrc.append("\n");
-	}
+	std::ostringstream ss;
+	std::ifstream file(path, std::ios_base::in);
+	// check for failure if file is not found!
 
-	std::cout << mSrc << std::endl;
+	ss << file.rdbuf();
+	std::string input = ss.str();
+
+	Scanner scanner(input);
+	scanner.scan(mTokens);
+	
+	for (auto& token : mTokens) {
+		token.print();
+	}
 }
