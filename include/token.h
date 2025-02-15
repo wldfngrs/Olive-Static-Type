@@ -8,7 +8,7 @@ enum TokenType {
 	t_LPAREN, t_RPAREN,
 	t_LBRACE, t_RBRACE,
 	t_COMMA, t_MINUS, t_PLUS,
-	t_DIVIDE, t_STAR, t_COLON,
+	t_DIVIDE, t_MULTIPLY, t_COLON,
 	// One or two character tokens.
 	t_BANG, t_BANGEQUAL,
 	t_EQUAL, t_EQUALEQUAL,
@@ -37,19 +37,19 @@ private:
 };
 
 static std::map<std::string, TokenType> keywords = {
-	{"and", TOKEN_AND},
-	{"else", TOKEN_ELSE},
-	{"false", TOKEN_FALSE},
-	{"for", TOKEN_FOR},
-	{"fn", TOKEN_FN},
-	{"if", TOKEN_IF},
-	{"or", TOKEN_OR},
-	{"print", TOKEN_PRINT},
-	{"true", TOKEN_TRUE},
-	{"int", TOKEN_INT},
-	{"str", TOKEN_STR},
-	{"dbl", TOKEN_DBL},
-	{"while", TOKEN_WHILE},
-	{"break", TOKEN_BREAK},
-	{"continue", TOKEN_CONTINUE}
+	{"and", t_AND},
+	{"else", t_ELSE},
+	{"false", t_FALSE},
+	{"for", t_FOR},
+	{"fn", t_FN},
+	{"if", t_IF},
+	{"or", t_OR},
+	{"print", t_PRINT},
+	{"true", t_TRUE},
+	{"int", t_INT},
+	{"str", t_STR},
+	{"dbl", t_DBL},
+	{"while", t_WHILE},
+	{"break", t_BREAK},
+	{"continue", t_CONTINUE}
 };

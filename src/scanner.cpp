@@ -40,44 +40,44 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 			current++;
 			break;
 		case '\n':
-			tokensOutput.emplace_back(TOKEN_NEWLINE, "\\n", line_no);
+			tokensOutput.emplace_back(t_NEWLINE, "\\n", line_no);
 			current++;
 			line_no++;
 			break;
 		case '(':
-			tokensOutput.emplace_back(TOKEN_LEFT_PAREN, "(", line_no);
+			tokensOutput.emplace_back(t_LPAREN, "(", line_no);
 			current++;
 			break;
 		case ')':
-			tokensOutput.emplace_back(TOKEN_RIGHT_PAREN, ")", line_no);
+			tokensOutput.emplace_back(t_RPAREN, ")", line_no);
 			++current;
 			break;
 		case '{':
-			tokensOutput.emplace_back(TOKEN_LEFT_BRACE, "{", line_no);
+			tokensOutput.emplace_back(t_LBRACE, "{", line_no);
 			++current;
 			break;
 		case '}':
-			tokensOutput.emplace_back(TOKEN_RIGHT_BRACE, "}", line_no);
+			tokensOutput.emplace_back(t_RBRACE, "}", line_no);
 			++current;
 			break;
 		case ',':
-			tokensOutput.emplace_back(TOKEN_COMMA, ",", line_no);
+			tokensOutput.emplace_back(t_COMMA, ",", line_no);
 			++current;
 			break;
 		case '-':
-			tokensOutput.emplace_back(TOKEN_MINUS, "-", line_no);
+			tokensOutput.emplace_back(t_MINUS, "-", line_no);
 			++current;
 			break;
 		case '+':
-			tokensOutput.emplace_back(TOKEN_PLUS, "+", line_no);
+			tokensOutput.emplace_back(t_PLUS, "+", line_no);
 			++current;
 			break;
 		case '/':
-			tokensOutput.emplace_back(TOKEN_SLASH, "/", line_no);
+			tokensOutput.emplace_back(t_DIVIDE, "/", line_no);
 			++current;
 			break;
 		case '*':
-			tokensOutput.emplace_back(TOKEN_STAR, "*", line_no);
+			tokensOutput.emplace_back(t_MULTIPLY, "*", line_no);
 			++current;
 			break;
 		case '"':
@@ -91,21 +91,21 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 				return;
 			}
 
-			tokensOutput.emplace_back(TOKEN_STRING, std::string(mSrc, start, current - start), line_no);
+			tokensOutput.emplace_back(t_STRING, std::string(mSrc, start, current - start), line_no);
 			current++;
 			break;
 		// One or two character tokens.
 		case '!':
-			tokensOutput.push_back(makeToken(TOKEN_BANG, "!", TOKEN_BANG_EQUAL, "!="));
+			tokensOutput.push_back(makeToken(t_BANG, "!", t_BANGEQUAL, "!="));
 			break;
 		case '=':
-			tokensOutput.push_back(makeToken(TOKEN_EQUAL, "=", TOKEN_EQUAL_EQUAL, "=="));
+			tokensOutput.push_back(makeToken(t_EQUAL, "=", t_EQUALEQUAL, "=="));
 			break;
 		case '<':
-			tokensOutput.push_back(makeToken(TOKEN_LESS, "<", TOKEN_LESS_EQUAL, "<="));
+			tokensOutput.push_back(makeToken(t_LESS, "<", t_LESSEQUAL, "<="));
 			break;
 		case '>':
-			tokensOutput.push_back(makeToken(TOKEN_GREATER, ">", TOKEN_GREATER_EQUAL, ">="));
+			tokensOutput.push_back(makeToken(t_GREATER, ">", t_GREATEREQUAL, ">="));
 			break;
 		default:
 			if (isDigit(mSrc[start])) {
@@ -113,7 +113,7 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 					++current;
 				} while (isDigit(mSrc[current]));
 
-				tokensOutput.emplace_back(TOKEN_NUMBER, std::string(mSrc, start, current - start), line_no);
+				tokensOutput.emplace_back(t_NUMBER, std::string(mSrc, start, current - start), line_no);
 			}
 			else if (isAlpha(mSrc[start])) {
 				do {
@@ -122,7 +122,7 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 
 				std::string str = std::string(mSrc, start, current - start);
 				if (keywords.find(str) == keywords.end()) {
-					tokensOutput.emplace_back(TOKEN_IDENTIFIER, std::string(mSrc, start, current - start), line_no);
+					tokensOutput.emplace_back(t_IDENTIFIER, std::string(mSrc, start, current - start), line_no);
 				}
 				else {
 					tokensOutput.emplace_back(keywords[str], str, line_no);
@@ -135,5 +135,5 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 
 		start = current;
 	}
-	tokensOutput.emplace_back(TOKEN_EOF, "$", line_no);
+	tokensOutput.emplace_back(t_EOF, "$", line_no);
 }
