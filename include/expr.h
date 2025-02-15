@@ -11,7 +11,7 @@ enum Type {
 	NAT,
 };
 
-class Expr {
+class Expr : Statement {
 	Type mType;
 public:
 	virtual void print_ast() {
@@ -36,6 +36,7 @@ public:
 		mExpr = std::move(expr);
 		set_type(NAT);
 	}
+
 	void print_ast() override {
 		std::cout << "unary(int:";
 		mExpr->print_ast();
@@ -53,6 +54,7 @@ public:
 		mRight = std::move(right);
 		set_type(NAT);
 	}
+
 	void print_ast() override {
 		std::cout << "binary(";
 		mLeft->print_ast();
@@ -84,6 +86,7 @@ public:
 		mString = string;
 		set_type(STR);
 	}
+
 	void print_ast() override {
 		std::cout << "str: " << mString;
 	}
