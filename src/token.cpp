@@ -4,12 +4,12 @@
 
 Token::Token() {}
 
-Token::Token(TokenType type, std::string literal, size_t line) {
-	mType = type;
+Token::Token(TokenType tokenType, std::string literal, size_t line) {
+	mTokenType = tokenType;
 	mLiteral = literal;
 	mLine = line;
 }
 
 void Token::print() const {
-	std::cout << mType << " " << mLiteral << " " << mLine << std::endl;
+	std::cout << mLiteral << std::endl;
 }

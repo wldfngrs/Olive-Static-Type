@@ -135,4 +135,5 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 
 		start = current;
 	}
+	tokensOutput.emplace_back(TOKEN_EOF, "$", line_no);
 }

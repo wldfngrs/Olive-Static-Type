@@ -129,7 +129,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\statement.h" />
     <ClInclude Include="include\compiler.h" />
+    <ClInclude Include="include\expr.h" />
+    <ClInclude Include="include\parser.h" />
     <ClInclude Include="include\scanner.h" />
     <ClInclude Include="include\token.h" />
   </ItemGroup>

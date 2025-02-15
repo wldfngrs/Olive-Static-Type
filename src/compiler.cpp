@@ -4,6 +4,7 @@
 
 #include "../include/compiler.h"
 #include "../include/scanner.h"
+#include "../include/parser.h"
 
 Compiler::Compiler() {}
 
@@ -18,7 +19,10 @@ void Compiler::compile(const char* path) {
 	Scanner scanner(input);
 	scanner.scan(mTokens);
 	
-	for (auto& token : mTokens) {
-		token.print();
-	}
+	//for (auto& token : mTokens) {
+	//	token.print();
+	//}
+
+	Parser parser;
+	parser.parse(mTokens);
 }
