@@ -65,7 +65,12 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 			++current;
 			break;
 		case '-':
-			tokensOutput.emplace_back(t_MINUS, "-", line_no);
+			Token lastToken = tokensOutput.back();
+			if (lastToken.mLine == line_no &&
+				(lastToken.mTokenType == t_NUMBER ||
+				 lastToken.mTokenType == t_IDENTIFIER))
+				tokensOutput.emplace_back(t_MINUS, "-", line_no);
+			else tokensOutput.emplace_back(t_UNARY, "-", line_no);
 			++current;
 			break;
 		case '+':
@@ -135,5 +140,5 @@ void Scanner::scan(std::vector<Token>& tokensOutput) {
 
 		start = current;
 	}
-	tokensOutput.emplace_back(t_EOF, "$", line_no);
+	//tokensOutput.emplace_back(t_EOF, "$", line_no);
 }

@@ -7,7 +7,7 @@ enum TokenType {
 	// Single-character tokens.
 	t_LPAREN, t_RPAREN,
 	t_LBRACE, t_RBRACE,
-	t_COMMA, t_MINUS, t_PLUS,
+	t_COMMA, t_MINUS, t_UNARY, t_PLUS,
 	t_DIVIDE, t_MULTIPLY, t_COLON,
 	// One or two character tokens.
 	t_BANG, t_BANGEQUAL,
@@ -22,7 +22,6 @@ enum TokenType {
 	t_PRINT, t_RETURN,
 	t_TRUE, t_INT, t_STR, t_DBL, t_WHILE, t_BREAK, t_CONTINUE,
 	t_NEWLINE,
-	t_EOF,
 };
 
 struct Token {
@@ -30,10 +29,10 @@ struct Token {
 	Token(TokenType tokenType, std::string literal, size_t line);
 	void print() const;
 
-private:
 	TokenType mTokenType;
-	std::string mLiteral;
 	size_t mLine;
+private:
+	std::string mLiteral;
 };
 
 static std::map<std::string, TokenType> keywords = {
